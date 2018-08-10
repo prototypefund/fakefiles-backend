@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block head-title %}
+{{ object }}
+{% endblock head-title %}
+
+{% block main %}
+<article class="item-detail-view">
+  <div class="mdc-layout-grid">
+    <h1 class="mdc-typography--headline1">{{ object }}</h1>
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-tablet
+      mdc-layout-grid__cell--span-6">
+        <div class="item-image-wrapper">
+          <img class="item-image mdc-elevation--z2" src="{{ object.cover.url }}" />
+          <div class="mdc-chip-set category-chip-set">
+            <div class="mdc-chip" tabindex="0">
+              <a href="{{ object.category.get_absolute_url }}">
+                <div class="mdc-chip__text">{{ object.category }}</div>
+              </a>
+            </div>
+          </div>
+          {% include './_tag-list.html' %}
+        </div>
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-tablet
+      mdc-layout-grid__cell--span-6">
+        {% include './_claim-list.html' %}
+        <p>{{ object.description|linebreaksbr }}</p>
+      </div>
+    </div>
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6
+      mdc-layout-grid__cell--span-12-tablet">
+        <h2 class="mdc-typography--headline2">
+          {% trans 'Factchecks' %}
+        </h2>
+        {% include './_reference-list.html' with references=object.factchecks.all %}
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6
+      mdc-layout-grid__cell--span-12-tablet">
+        <h2 class="mdc-typography--headline2">
+          {% trans 'Occurences' %}
+        </h2>
+        {% include './_reference-list.html' with references=object.occurences.all %}
+      </div>
+    </div>
+  </div>
+</article>
+{% endblock main %}
+

@@ -1,0 +1,90 @@
+@import '../responsive.scss';
+@import '@material/chips/mdc-chips';
+@import '@material/elevation/mdc-elevation';
+
+.item-detail-view {
+
+  .item-image-wrapper {
+    position: relative;
+
+    .mdc-chip {
+      @include mdc-chip-corner-radius(0);
+      @include mdc-elevation(2);
+
+      a {
+        text-decoration: none;
+        color: $mdc-theme-on-primary;
+      }
+    }
+
+    .category-chip-set {
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      .mdc-chip {
+        @include mdc-chip-fill-color($mdc-theme-primary);
+        font-weight: 500;
+      }
+    }
+
+    .tag-chip-set {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+
+  }
+
+  .item-image {
+    display: block;
+    max-width: 100%;
+    max-height: 600px;
+  }
+
+  .mdc-list-group {
+    &__subheader {
+      margin: 0;
+      font-weight: 500;
+    }
+  }
+
+  .mdc-list-item {
+    padding-right: 0;
+
+    &__meta {
+      .short-date {
+        @include hide-bigger;
+      }
+      .long-date {
+        @include hide-small;
+      }
+    }
+  }
+
+  .claim-list-wrapper {
+    padding: 15px;
+
+    .claim-icon {
+      &--false {
+        color: $mdc-theme-primary;
+      }
+      &--true {
+        color: $mdc-theme-secondary;
+      }
+    }
+
+  }
+
+  .references-list-wrapper {
+    .material-icons {
+      &--error {
+        color: $mdc-theme-primary;
+      }
+      &--verified_user {
+        color: $mdc-theme-secondary;
+      }
+    }
+  }
+
+}

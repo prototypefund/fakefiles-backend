@@ -1,0 +1,43 @@
+@import '../responsive.scss';
+@import '@material/image-list/mdc-image-list';
+@import '@material/elevation/mdc-elevation';
+
+.image-grid {
+
+  @include mdc-image-list-standard-columns(1);
+  @include bp-xs {
+    @include mdc-image-list-standard-columns(2);
+    @include bp-sm {
+      @include mdc-image-list-standard-columns(3);
+      @include bp-md {
+        @include mdc-image-list-standard-columns(4);
+        @include bp-lg {
+          @include mdc-image-list-standard-columns(5);
+        }
+      }
+    }
+  }
+
+  .mdc-image-list__item {
+    position: relative;
+
+    .mdc-chip-set {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 3;
+
+      .mdc-chip {
+        @include mdc-chip-corner-radius(0);
+        @include mdc-chip-fill-color($mdc-theme-primary);
+        @include mdc-elevation(4);
+
+        a {
+          text-decoration: none;
+          color: $mdc-theme-on-primary;
+        }
+      }
+    }
+  }
+
+}

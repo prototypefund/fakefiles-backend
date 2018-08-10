@@ -1,0 +1,10 @@
+Django
+django-reversion==3.0.0
+django-webpack-loader==0.6.0
+easy-thumbnails==2.5
+elasticsearch==2.3.0
+image-match==1.1.2
+numpy==1.15.0
+Pillow==5.2.0
+scikit-image==0.12.3
+scipy==1.1.0

@@ -1,0 +1,24 @@
+{% load i18n %}
+
+<section class="reverse-image-form">
+  <form action="{% url 'index' %}" method="post">
+    <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon">
+      <i class="material-icons mdc-text-field__icon" tabindex="0" role="button">image</i>
+      {% csrf_token %}
+      <input class="mdc-text-field__input"
+             id="search-input"
+             name="image_url"
+             type="search"
+             aria-controls="search-helper-text"
+             aria-describedby="search-helper-text"
+             aria-label="{% trans 'Image' %}">
+      <label class="mdc-floating-label" for="search-input">{% trans 'Insert image url' %}...</label>
+      <div class="mdc-line-ripple"></div>
+    </div>
+    <p id="search-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent" aria-hidden="true">
+      {% trans 'Insert url of an image from the web' %}
+    </p>
+    {# <input type="submit" class="mdc-button mdc-button--raised" value="{% trans 'Search' %}" /> #}
+  </form>
+</section>
+

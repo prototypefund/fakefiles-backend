@@ -1,0 +1,81 @@
+@import '@material/top-app-bar/mdc-top-app-bar';
+@import '@material/icon-button/mdc-icon-button';
+@import '../responsive.scss';
+// @import '@material/typography/mdc-typography';
+
+.header {
+
+  .breadcrumbs {
+    padding-left: 0;
+    @include bp-sm {
+      padding-left: 10px;
+    }
+  }
+
+  .breadcrumb {
+    color: $mdc-theme-on-primary;
+    text-decoration: none;
+
+    &:hover {
+      color: lighten($mdc-theme-on-primary, 10%);
+    }
+  }
+
+  .share-hint {
+    display: none;
+
+    @include bp-md {
+      display: inline;
+      @include mdc-typography(overline);
+    }
+  }
+
+  .hide-small {
+    @include hide-small;
+  }
+
+  .hide-bigger {
+    @include hide-bigger;
+  }
+
+  // .home-icon {
+  //   padding-left: 0;
+  // }
+
+}
+
+// index header
+.mdc-top-app-bar--prominent {
+
+  .share-hint {
+      align-self: flex-start;
+      line-height: 48px;
+      // padding-top: 12px;
+  }
+
+  .mdc-top-app-bar {
+
+    &__content {
+      display: block;
+      padding-left: 20px;
+    }
+
+    &__title {
+      align-self: flex-start;
+      padding-left: 0;
+      @include mdc-typography(headline4);
+    }
+
+    &__claim {
+      display: none;
+
+      @include bp-xs {
+        display: block;
+        @include mdc-typography(headline5);
+        text-transform: uppercase;
+      }
+    }
+
+  }
+
+}

@@ -1,0 +1,26 @@
+{% load i18n %}
+
+<div class="claim-list-wrapper mdc-elevation--z3">
+  <div class="mdc-list-group">
+    <h3 class="mdc-list-group__subheader">{% trans 'Right' %}</h3>
+    <ul class="mdc-list mdc-list--non-interactive" aria-orientation="vertical">
+      {% for claim in object.right_claims %}
+      <li class="mdc-list-item">
+        <span class="mdc-list-item__graphic material-icons claim-icon claim-icon--true" aria-hidden="true">{{ claim.icon }}</span>
+        {{ claim }}
+      </li>
+      {% endfor %}
+    </ul>
+
+
+    <h3 class="mdc-list-group__subheader">{% trans 'Wrong' %}</h3>
+    <ul class="mdc-list mdc-list--non-interactive" aria-orientation="vertical">
+      {% for claim in object.wrong_claims %}
+      <li class="mdc-list-item">
+        <span class="mdc-list-item__graphic material-icons claim-icon claim-icon--false" aria-hidden="true">{{ claim.icon }}</span>
+        {{ claim }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

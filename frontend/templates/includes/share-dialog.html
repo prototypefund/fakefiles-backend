@@ -1,0 +1,27 @@
+{% load i18n %}
+
+<aside id="share-dialog"
+  class="mdc-dialog"
+  role="alertdialog"
+  aria-labelledby="share-dialog-label"
+  aria-describedby="share-dialog-description">
+  <div class="mdc-dialog__surface">
+    <header class="mdc-dialog__header">
+      <h2 id="share-dialog-label" class="mdc-dialog__header__title">
+        Share "{{ share_title }}" on social media
+      </h2>
+    </header>
+    <section id="share-dialog-description" class="mdc-dialog__body">
+      <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+        vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+        no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      </p>
+    </section>
+    <footer class="mdc-dialog__footer">
+      <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">{% trans 'cancel' %}</button>
+    </footer>
+  </div>
+  <div class="mdc-dialog__backdrop"></div>
+</aside>

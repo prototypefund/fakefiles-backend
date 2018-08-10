@@ -1,0 +1,54 @@
+@import '../responsive.scss';
+@import '@material/textfield/mdc-text-field';
+@import '@material/floating-label/mdc-floating-label';
+@import '@material/textfield/helper-text/mdc-text-field-helper-text';
+
+.index-view {
+
+  h1 {
+    text-align: center;
+    @include bp-xs {
+      text-align: left;
+    }
+
+    .q {
+      color: $mdc-theme-primary;
+    }
+  }
+
+  .reverse-image-form, .search-form {
+
+    .mdc-text-field {
+      width: 100%;
+    }
+
+  }
+
+  .differentiate-hint {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1rem;
+    margin: 0;
+    @include bp-xs {
+      text-align: left;
+      @include bp-md {
+        text-align: center;
+        line-height: 100%;
+      }
+    }
+  }
+
+  .search-form {
+
+    .mdc-text-field-helper-text {
+      a {
+        color: rgba(0, 0, 0, 0.6);
+        &:hover {
+          color: lighten(rgba(0, 0, 0, 0.6), 20%);
+        }
+      }
+    }
+
+  }
+
+}

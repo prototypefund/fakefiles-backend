@@ -1,0 +1,13 @@
+.footer {
+
+  color: gray;
+
+  a {
+    color: darken(gray, 30%);
+
+    &:hover {
+      color: darken(gray, 20%);
+    }
+  }
+
+}

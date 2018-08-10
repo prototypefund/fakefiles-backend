@@ -1,0 +1,9 @@
+<div class="mdc-chip-set tag-chip-set">
+  {% for tag in item.tags.all %}
+  <div class="mdc-chip" tabindex="0">
+    <a href="{{ tag.get_absolute_url }}">
+      <div class="mdc-chip__text">{{ tag }}</div>
+    </a>
+  </div>
+  {% endfor %}
+</div>

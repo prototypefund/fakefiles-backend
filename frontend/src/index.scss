@@ -1,0 +1,21 @@
+@import '../node_modules/normalize.css/normalize.css';
+
+// theme vars
+@import './theme.scss';
+
+// material base
+@import '@material/layout-grid/mdc-layout-grid';
+
+// components
+@import './components/Button.scss';
+@import './components/Tag.scss';
+@import './components/Header.scss';
+@import './components/Nav.scss';
+@import './components/ImageGrid.scss';
+@import './components/LinkList.scss';
+@import './components/ShareDialog.scss';
+@import './components/Footer.scss';
+
+// views
+@import './views/index.scss';
+@import './views/ItemDetailView.scss';

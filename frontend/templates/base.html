@@ -1,0 +1,32 @@
+{% load render_bundle from webpack_loader %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% render_bundle 'main' 'css' %}
+    <title>{% block head-title %}home{% endblock %} | fakefiles.org</title>
+  </head>
+  <body>
+    {% block header %}
+      {% include './includes/header.html' %}
+    {% endblock %}
+    {% include './includes/menu.html' %}
+
+    <main class="main {% block content-adjust-css %}mdc-top-app-bar--fixed-adjust{% endblock %}">
+      {% block main %}
+      {% include './includes/components.html' %}
+      {% endblock %}
+    </main>
+
+    <footer class="footer">
+      {% include './includes/footer.html' %}
+    </footer>
+
+    {% include './includes/share-dialog.html' %}
+
+    {% render_bundle 'main' 'js' %}
+  </body>
+</html>

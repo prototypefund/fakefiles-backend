@@ -1,0 +1,41 @@
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1200px;
+
+@mixin bp-xs() {
+  @media (min-width: $screen-sm * 0.6) {
+    @content
+  }
+}
+
+@mixin bp-sm() {
+  @media (min-width: $screen-sm) {
+    @content
+  }
+}
+
+@mixin bp-md() {
+  @media (min-width: $screen-md) {
+    @content
+  }
+}
+
+@mixin bp-lg() {
+  @media (min-width: $screen-lg) {
+    @content
+  }
+}
+
+@mixin hide-bigger() {
+  @include bp-sm {
+    display: none;
+  }
+}
+
+@mixin hide-small($display: inline) {
+  display: none;
+
+  @include bp-sm() {
+    display: $display;
+  }
+}

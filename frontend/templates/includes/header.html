@@ -1,0 +1,19 @@
+{% load i18n %}
+{% load site_tags %}
+
+<header class="mdc-top-app-bar mdc-top-app-bar--fixed header">
+  <div class="mdc-top-app-bar__row">
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+      <a href="#" class="material-icons mdc-top-app-bar__navigation-icon" data-nav-toggle>menu</a>
+      <a href="/" class="material-icons mdc-top-app-bar__navigation-icon hide-bigger home-icon">home</a>
+      <span class="mdc-top-app-bar__title breadcrumbs">
+        <a href="/" class="breadcrumb hide-small">fakefiles.org</a>
+        {% render_breadcrumbs %}
+      </span>
+    </section>
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+      <span class="share-hint">{% trans 'Share this' %}</span>
+      <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="Share" alt="Share" data-share>share</a>
+    </section>
+  </div>
+</header>

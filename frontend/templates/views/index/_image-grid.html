@@ -1,0 +1,19 @@
+<ul class="mdc-image-list mdc-image-list--with-text-protection image-grid">
+  {% for item in object_list %}
+  <li class="mdc-image-list__item">
+    <div class="mdc-chip-set">
+      <div class="mdc-chip" tabindex="0">
+        <a href="{{ item.category.get_absolute_url }}"><div class="mdc-chip__text">{{ item.category }}</div></a>
+      </div>
+    </div>
+    <a href="{{ item.get_absolute_url }}">
+      <div class="mdc-image-list__image-aspect-container">
+        <img class="mdc-image-list__image" src="{{ item.thumbnail.grid.url }}">
+      </div>
+      <div class="mdc-image-list__supporting">
+        <span class="mdc-image-list__label">{{ item }}</span>
+      </div>
+    </a>
+  </li>
+  {% endfor %}
+</ul>

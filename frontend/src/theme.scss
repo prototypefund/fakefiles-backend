@@ -1,0 +1,74 @@
+// colors
+// $mdc-theme-primary: #fcb8ab;
+// $mdc-theme-secondary: #feeae6;
+// $mdc-theme-on-primary: #442b2d;
+// $mdc-theme-on-secondary: #442b2d;
+$mdc-theme-primary: #ef9a9a;
+$mdc-theme-secondary: #00695c;
+$mdc-theme-on-primary: #212121;
+$mdc-theme-on-secondary: #fff;
+
+// font
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+// @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700');
+// @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,400,500');
+
+
+$mdc-typography-font-family: 'Rubik', sans-serif;
+
+// font sizing
+$mdc-typography-styles-headline1: (
+  font-size: 2rem,
+  line-height: 2rem
+);
+$mdc-typography-styles-headline2: (
+  font-size: 1.8rem,
+  line-height: 1.8rem
+);
+$mdc-typography-styles-headline3: (
+  font-size: 1.5rem,
+  line-height: 1.5rem
+);
+$mdc-typography-styles-headline4: (
+  font-size: 2rem,
+  line-height: 2rem
+);
+
+@import '@material/theme/mdc-theme';
+@import '@material/typography/mdc-typography';
+@import './responsive.scss';
+
+.main {
+  @include mdc-typography-base;
+}
+
+// headline adjustments & responsive sizes
+.mdc-typography {
+  &--headline1 {
+    @include bp-sm {
+      font-size: 3rem;
+      line-height: 3rem;
+    }
+    @include bp-lg {
+      font-size: 4rem;
+      line-height: 4rem;
+    }
+  }
+
+  &--headline2 {
+    font-weight: 500;
+  }
+}
+
+
+// other stuff
+body {
+  background: lighten(gray, 30%);
+
+  .main {
+    background: white;
+    padding-bottom: 50px;
+  }
+}
+

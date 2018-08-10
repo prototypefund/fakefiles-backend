@@ -1,0 +1,25 @@
+{% load static %}
+{% load i18n %}
+
+<div class="mdc-layout-grid">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+      <div class="funder-img-wrapper">
+        <img src="{% static 'img/funders.svg' %}" class="funder-img" />
+      </div>
+    </div>
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+    </div>
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+      <p class="mdc-typography--body2">
+        <a href="/impressum/">{% trans 'Impress' %}</a>
+      </p>
+      <p class="mdc-typography--body2">
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+      tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+      vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+      no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      </p>
+    </div>
+  </div>
+</div>

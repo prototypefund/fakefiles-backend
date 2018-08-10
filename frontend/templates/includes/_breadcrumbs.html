@@ -1,0 +1,3 @@
+{% for breadcrumb in breadcrumbs %}
+<span class="hide-small">/ </span><a href="{{ breadcrumb.url }}" class="breadcrumb{% if forloop.last %} breadcrumb--active{% endif %}">{{ breadcrumb.name }}</a>
+{% endfor %}

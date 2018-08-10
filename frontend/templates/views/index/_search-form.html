@@ -1,0 +1,24 @@
+{% load i18n %}
+
+<section class="search-form">
+  <form action="{% url 'index' %}" method="get">
+    <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon">
+      <i class="material-icons mdc-text-field__icon" tabindex="0" role="button">search</i>
+      <input class="mdc-text-field__input"
+             id="search-input"
+             value="{{ q|default_if_none:'' }}"
+             name="q"
+             type="search"
+             aria-controls="search-helper-text"
+             aria-describedby="search-helper-text"
+             aria-label="{% trans 'Search' %}">
+      <label class="mdc-floating-label" for="search-input">{% trans 'Type text' %}...</label>
+      <div class="mdc-line-ripple"></div>
+    </div>
+    <p id="search-helper-text" class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent" aria-hidden="true">
+      <strong>{% trans 'Try' %}:</strong> {% for tag in helper_text_tags %}<a href="{{ tag.get_absolute_url }}">{{ tag }}</a>, {% endfor %}...
+    </p>
+    {#    <input type="submit" class="mdc-button mdc-button--raised" value="{% trans 'Search' %}" /> #}
+  </form>
+</section>
+

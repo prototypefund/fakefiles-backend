@@ -1,0 +1,10 @@
+@import '@material/list/mdc-list';
+
+.link-list {
+
+  a, .mdc-list-item__text {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+}
