@@ -2,29 +2,40 @@ import reversion
 
 from easy_thumbnails.fields import ThumbnailerImageField
 
+from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
+from parler.models import TranslatedFields
+
 from .elastic import add_image
-from .mixins.models import AbstractVisibleModel
+from .mixins.models import AbstractVisibleModel, AbstractBaseModel
 
 
 class Category(AbstractVisibleModel):
+    translations = TranslatedFields(
+        name=models.CharField(_('Name'), max_length=1000, db_index=True),
+        slug=models.SlugField(_('Slug'), max_length=1008, db_index=True, null=True, blank=True)
+    )
     parent = models.ManyToManyField('self', verbose_name=_('Parent'), blank=True)
 
     class Meta:
         verbose_name = _('Category')
         verbose_name_plural = _('Categories')
-        ordering = ('name',)
+        # ordering = ('name',)
 
     def get_absolute_url(self):
         return '%s?cat=%s' % (reverse('index'), self.name)
 
 
 class Tag(AbstractVisibleModel):
+    translations = TranslatedFields(
+        name=models.CharField(_('Name'), max_length=1000, db_index=True),
+        slug=models.SlugField(_('Slug'), max_length=1008, db_index=True, null=True, blank=True)
+    )
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, verbose_name=_('Category'),
                                  related_name='tags', blank=True, null=True)
     parent = models.ManyToManyField('self', verbose_name=_('Parent'), blank=True)
@@ -32,14 +43,19 @@ class Tag(AbstractVisibleModel):
     class Meta:
         verbose_name = _('Tag')
         verbose_name_plural = _('Tags')
-        ordering = ('name',)
+        # ordering = ('name',)
 
     def get_absolute_url(self):
         return '%s?tag=%s' % (reverse('index'), self.name)
 
 
 class Source(AbstractVisibleModel):
+    translations = TranslatedFields(
+        name=models.CharField(_('Name'), max_length=1000, db_index=True),
+        slug=models.SlugField(_('Slug'), max_length=1008, db_index=True, null=True, blank=True)
+    )
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, verbose_name=_('Category'),
+                                 limit_choices_to={'parent__translations__name': settings.TAXONOMY['SOURCE']},
                                  blank=True, null=True, related_name='sources')
     url = models.URLField()
 
@@ -50,9 +66,16 @@ class Source(AbstractVisibleModel):
 
 @reversion.register()
 class Item(AbstractVisibleModel):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name=_('Category'), related_name='items')
-    tags = models.ManyToManyField(Tag, related_name='items')
-    description = models.TextField(_('Description'))
+    translations = TranslatedFields(
+        name=models.CharField(_('Name'), max_length=1000, db_index=True),
+        slug=models.SlugField(_('Slug'), max_length=1008, db_index=True, null=True, blank=True),
+        description=models.TextField(_('Description'))
+    )
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,
+                                 limit_choices_to={'parent__translations__name': settings.TAXONOMY['CONTEXT']},
+                                 verbose_name=_('Context'), related_name='items')
+    tags = models.ManyToManyField(Tag, related_name='items',
+                                  limit_choices_to={'category__translations__name': settings.TAXONOMY['DESCRIPTIVE']})
 
     @cached_property
     def original(self):
@@ -99,20 +122,23 @@ def get_upload_to(instance, filename):
     )
 
 
-class Media(AbstractVisibleModel):
+class Media(AbstractBaseModel):
     ORIGINAL = 'o'
     VARIANT = 'v'
     THUMBNAIL = 't'
     DISPLAY = 'd'
+    SOCIAL_MEDIA = 's'
     KIND_CHOICES = (
         (ORIGINAL, _('Original')),
         (VARIANT, _('Variant')),
         (THUMBNAIL, _('Thumbnail')),
-        (DISPLAY, _('Display'))
+        (DISPLAY, _('Display')),
+        (SOCIAL_MEDIA, _('Social Media'))
     )
 
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='%(class)s_assets')
     kind = models.CharField(_('Type'), max_length=1, choices=KIND_CHOICES, default=ORIGINAL)
+    credits = models.TextField(_('Credits'), blank=True, null=True)
 
     class Meta:
         abstract = True
@@ -149,6 +175,7 @@ class Reference(AbstractVisibleModel):
     url = models.URLField(_('URL'), blank=True, null=True)
     archive_url = models.URLField(_('Archive URL'), blank=True, null=True)
     screenshot = ThumbnailerImageField(_('Screenshot'), upload_to=get_upload_to, blank=True, null=True)
+    lang = models.TextField(_('Language'), choices=settings.LANGUAGES, default=settings.ENGLISH)
 
     def get_absolute_url(self):
         return self.url or self.archive_url or self.screenshot.url
@@ -158,6 +185,10 @@ class Reference(AbstractVisibleModel):
 
 
 class FactCheck(Reference):
+    translations = TranslatedFields(
+        name=models.CharField(_('Name'), max_length=1000, db_index=True),
+        slug=models.SlugField(_('Slug'), max_length=1008, db_index=True, null=True, blank=True)
+    )
     icon = 'verified_user'
 
     def get_name(self):
@@ -169,6 +200,11 @@ class FactCheck(Reference):
 
 
 class Occurence(Reference):
+    translations = TranslatedFields(
+        name=models.CharField(_('Name'), max_length=1000, db_index=True),
+        slug=models.SlugField(_('Slug'), max_length=1008, db_index=True, null=True, blank=True),
+        description=models.TextField(_('Description'), blank=True, null=True)
+    )
     icon = 'error'
 
     def get_name(self):
@@ -180,6 +216,10 @@ class Occurence(Reference):
 
 
 class Claim(AbstractVisibleModel):
+    translations = TranslatedFields(
+        name=models.CharField(_('Name'), max_length=1000, db_index=True),
+        slug=models.SlugField(_('Slug'), max_length=1008, db_index=True, null=True, blank=True),
+    )
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='claims', verbose_name=_('Item'))
     is_true = models.BooleanField(verbose_name=_('True?'), default=False)
 

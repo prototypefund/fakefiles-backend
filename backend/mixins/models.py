@@ -6,6 +6,8 @@ from django.urls import reverse
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 
+from parler.models import TranslatableModel
+
 
 class UUIDasPKModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -14,27 +16,12 @@ class UUIDasPKModel(models.Model):
         abstract = True
 
 
-class AbstractNameSlugModel(models.Model):
-    """
-    Base abstract Model with name and slug property. Updates
-    the slug based on the get_slug method
-    """
-    name = models.CharField(_('Name'), max_length=1000, db_index=True,
-                            null=True, blank=True)
-    slug = models.SlugField(_('Slug'), max_length=1008, db_index=True,
-                            null=True, blank=True)
-
+class AbstractNameSlugMixin(object):
     slug_unique = True  # default
     auto_slugs = True
 
-    class Meta:
-        abstract = True
-
     def __str__(self):
-        return self.get_name()
-
-    def get_name(self):
-        return self.name or '%s %s' % (self.__class__.__name__, self.pk)
+        return self.name
 
     def get_slug(self):
         return slugify(str(self))
@@ -44,16 +31,15 @@ class AbstractNameSlugModel(models.Model):
         Sets the slug of the instance based on the instance-method get_slug
         if the slugified name and the slug in the database aren't equal
         """
-        if not self.name:
-            self.name = str(self)
-        if self.auto_slugs and (not self.get_slug() == self.slug or not self.slug):
-            self.slug = self.get_slug()
-        elif not self.slug:
+        # if self.auto_slugs and (not self.get_slug() == self.slug or not self.slug):
+        #     self.slug = self.get_slug()
+        # elif not self.slug:
+        if not self.slug:
             self.slug = self.get_slug()
 
         if self.slug_unique:
             # slug uniqueness is set on per model basis
-            if self.__class__.objects.exclude(pk=self.pk).filter(slug=self.slug).exists():
+            if self.__class__.objects.exclude(pk=self.pk).filter(translations__slug=self.slug).exists():
                 self.slug = '{}-{}'.format(self.slug, str(self.id)[-8:])
 
         super().save(*args, **kwargs)
@@ -128,17 +114,22 @@ class AbstractOwnedModel(models.Model):
         super().save(*args, **kwargs)
 
 
-class AbstractBaseModel(UUIDasPKModel, AbstractNameSlugModel, AbstractTimeStampModel, AbstractOwnedModel):
+# class AbstractBaseModel(UUIDasPKModel, AbstractTimeStampModel, AbstractOwnedModel):
+class AbstractBaseModel(UUIDasPKModel, AbstractTimeStampModel, AbstractOwnedModel):
     class Meta(AbstractTimeStampModel.Meta):
         abstract = True
 
 
-class AbstractVisibleModel(AbstractBaseModel):
+class AbstractVisibleModel(UUIDasPKModel,
+                           AbstractNameSlugMixin,
+                           AbstractTimeStampModel,
+                           AbstractOwnedModel,
+                           TranslatableModel):
     visible = models.BooleanField(_('Is visible?'), default=True)
 
     def get_absolute_url(self):
         return reverse('%s-detail' % slugify(self.__class__.__name__),
                        kwargs={'slug': self.slug})
 
-    class Meta(AbstractBaseModel.Meta):
+    class Meta(AbstractTimeStampModel.Meta):
         abstract = True

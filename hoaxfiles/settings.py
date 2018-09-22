@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+from django.utils.translation import ugettext_lazy as _
+
 
 def get_env(x, y=None):
     return os.getenv(x, y)
@@ -28,7 +30,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = get_env('SECRET_KEY', '7%fenjbqv@1!1!q+u0(nospqe8*n^ge#c8sei4=$-(6&(gg&9c')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = get_env('DEBUG', 'True') == 'True'
+DEBUG = get_env('DJANGO_DEBUG', 'false') == 'true'
 
 ALLOWED_HOSTS = [get_env('ALLOWED_HOSTS', 'localhost')]
 
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'reversion',
     'easy_thumbnails',
+    'parler',
 
     'backend.apps.BackendConfig',
 ]
@@ -117,20 +120,6 @@ if not DEBUG:
     ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/2.0/topics/i18n/
-
-LANGUAGE_CODE = 'de'
-
-TIME_ZONE = 'Europe/Berlin'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
@@ -161,5 +150,45 @@ THUMBNAIL_ALIASES = {
     },
 }
 
-ES_INDEX = 'images'
+ES_INDEX = 'fakefiles-images'
 ES_HOST = 'localhost:9200'
+
+
+# Internationalization
+# https://docs.djangoproject.com/en/2.0/topics/i18n/
+
+LANGUAGE_CODE = 'de'
+
+TIME_ZONE = 'Europe/Berlin'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+PARLER_LANGUAGES = {
+    SITE_ID: (
+        {'code': 'de', },
+        {'code': 'en', },
+    ),
+    'default': {
+        'fallback': 'de',             # defaults to PARLER_DEFAULT_LANGUAGE_CODE
+        'hide_untranslated': False,   # the default; let .active_translations() return fallbacks too.
+    }
+}
+
+
+ENGLISH = 'en'
+GERMAN = 'de'
+
+LANGUAGES = (
+    (ENGLISH, _('English')),
+    (GERMAN, _('German')),
+)
+
+TAXONOMY = {
+    'CONTEXT': 'CONTEXT',
+    'DESCRIPTIVE': 'DESCRIPTIVE',
+    'SOURCE': 'SOURCE'
+}

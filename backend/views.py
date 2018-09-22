@@ -1,10 +1,12 @@
+from parler.views import TranslatableSlugMixin
+
 from django.db.models import Q
 from django.views.generic import DetailView, ListView
 
 from .models import Item, Tag
 
 
-class ItemDetailView(DetailView):
+class ItemDetailView(TranslatableSlugMixin, DetailView):
     template_name = 'views/item-detail/item_detail.html'
     model = Item
 
@@ -34,16 +36,16 @@ class ItemListView(ListView):
         cat = self.request.GET.get('cat')
         if q:
             ids = qs.filter(
-                Q(name__icontains=q) |
+                Q(translations__name__icontains=q) |
                 Q(tags__name__icontains=q) |
                 Q(category__name__icontains=q) |
-                Q(description__icontains=q)
+                Q(translations__description__icontains=q)
             ).values_list('id', flat=True)
             return qs.filter(id__in=ids)
         elif tag:
-            return qs.filter(tags__name=tag)
+            return qs.filter(tags__translations__name=tag)
         elif cat:
-            return qs.filter(category__name=cat)
+            return qs.filter(category__translations__name=cat)
         return qs.order_by('?')[:10]
 
     def get_context_data(self, *args, **kwargs):

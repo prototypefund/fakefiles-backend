@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.contrib import admin
 
+from parler.admin import TranslatableAdmin
+
 
 class AbstractTimeStampModelAdmin(admin.ModelAdmin):
     list_display = ['created_ts', 'last_changed_ts', ]
@@ -31,7 +33,7 @@ class AbstractBaseModelAdmin(AbstractNameSlugAdmin, AbstractTimeStampModelAdmin,
     list_filter = AbstractTimeStampModelAdmin.list_filter + AbstractOwnedModelAdmin.list_filter
 
 
-class AbstractVisibleModelAdmin(AbstractBaseModelAdmin):
+class AbstractVisibleModelAdmin(TranslatableAdmin, AbstractBaseModelAdmin):
     list_display = AbstractBaseModelAdmin.list_display + ['visible']
     list_filter = AbstractBaseModelAdmin.list_filter + ['visible']
 
