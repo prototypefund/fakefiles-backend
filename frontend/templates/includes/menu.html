@@ -1,4 +1,5 @@
 {% load flatpages %}
+{% load i18n %}
 {% get_flatpages as flatpages %}
 
 <aside class="mdc-drawer mdc-drawer--temporary mdc-typography">
@@ -9,6 +10,7 @@
       </div>
     </header>
     <nav class="mdc-drawer__content mdc-list">
+      <a class="mdc-list-item" href="/">{% trans 'Home' %}</a>
       {% for page in flatpages %}
       <a class="mdc-list-item{% ifequal page flatpage %} mdc-list-item--activated{% endifequal %}" href="{{ page.url }}">{{ page.title }}</a>
       {% endfor %}

@@ -2,11 +2,13 @@
 
 {% load i18n %}
 
-{% block header %}
-{% include './_header.html' %}
-{% endblock header %}
+{% comment %}
+  {% block header %}
+  {% include './_header.html' %}
+  {% endblock header %}
 
-{% block content-adjust-css %}mdc-top-app-bar--prominent-fixed-adjust{% endblock %}
+  {% block content-adjust-css %}mdc-top-app-bar--prominent-fixed-adjust{% endblock %}
+{% endcomment %}
 
 {% block main %}
 <section class="index-view">
@@ -14,7 +16,7 @@
     <div class="mdc-layout-grid__inner">
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
         <h1 class="mdc-typography--headline1">
-          {% trans 'Search in' %} {{ count }} {% trans 'Pictures' %}
+          {% trans 'Search' %} {{ count }} {% trans 'Fakes' %}
           {% if q %}for <span class="q">{{ q|title }}</span>{% endif %}
         </h1>
       </div>
