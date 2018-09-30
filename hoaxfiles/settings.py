@@ -60,6 +60,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -178,7 +179,6 @@ PARLER_LANGUAGES = {
     }
 }
 
-
 ENGLISH = 'en'
 GERMAN = 'de'
 
@@ -187,8 +187,13 @@ LANGUAGES = (
     (GERMAN, _('German')),
 )
 
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
+
 TAXONOMY = {
     'CONTEXT': 'CONTEXT',
     'DESCRIPTIVE': 'DESCRIPTIVE',
-    'SOURCE': 'SOURCE'
+    'SOURCE': 'SOURCE',
+    'LANGUAGE': 'LANGUAGE'
 }

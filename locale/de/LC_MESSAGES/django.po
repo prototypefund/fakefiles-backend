@@ -1,0 +1,270 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-30 16:21+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: backend/admin.py:20
+msgid "Set at least one of \"Url\", \"Archive Url\" or \"Screenshot\""
+msgstr ""
+
+#: backend/admin.py:83
+msgid "Please add at least one image"
+msgstr ""
+
+#: backend/mixins/models.py:52
+msgid "Created at"
+msgstr ""
+
+#: backend/mixins/models.py:53
+msgid "Last changed at"
+msgstr ""
+
+#: backend/mixins/models.py:70
+msgid "Owner"
+msgstr ""
+
+#: backend/mixins/models.py:75
+msgid "Created by"
+msgstr ""
+
+#: backend/mixins/models.py:81
+msgid "Last changed by"
+msgstr ""
+
+#: backend/mixins/models.py:128
+msgid "Is visible?"
+msgstr ""
+
+#: backend/models.py:20 backend/models.py:36 backend/models.py:54
+#: backend/models.py:70 backend/models.py:207 backend/models.py:222
+#: backend/models.py:238
+msgid "Name"
+msgstr ""
+
+#: backend/models.py:21 backend/models.py:37 backend/models.py:55
+#: backend/models.py:71 backend/models.py:208 backend/models.py:223
+#: backend/models.py:239
+msgid "Slug"
+msgstr ""
+
+#: backend/models.py:23 backend/models.py:41
+msgid "Parent"
+msgstr ""
+
+#: backend/models.py:26 backend/models.py:39 backend/models.py:57
+msgid "Category"
+msgstr ""
+
+#: backend/models.py:27
+msgid "Categories"
+msgstr ""
+
+#: backend/models.py:44
+msgid "Tag"
+msgstr ""
+
+#: backend/models.py:45
+msgid "Tags"
+msgstr ""
+
+#: backend/models.py:63
+msgid "Source"
+msgstr ""
+
+#: backend/models.py:64
+msgid "Sources"
+msgstr ""
+
+#: backend/models.py:72 backend/models.py:224
+msgid "Description"
+msgstr ""
+
+#: backend/models.py:76
+msgid "Context"
+msgstr ""
+
+#: backend/models.py:132
+#: frontend/templates/views/item-detail/_claim-list.html:5
+msgid "Original"
+msgstr ""
+
+#: backend/models.py:133
+msgid "Variant"
+msgstr ""
+
+#: backend/models.py:134
+msgid "Thumbnail"
+msgstr ""
+
+#: backend/models.py:135
+msgid "Display"
+msgstr ""
+
+#: backend/models.py:136
+msgid "Social Media"
+msgstr ""
+
+#: backend/models.py:140
+msgid "Type"
+msgstr ""
+
+#: backend/models.py:141
+msgid "Credits"
+msgstr ""
+
+#: backend/models.py:148
+#: frontend/templates/views/index/_reverse-image-form.html:14
+msgid "Image"
+msgstr "Bild"
+
+#: backend/models.py:151
+msgid "Image for"
+msgstr ""
+
+#: backend/models.py:164
+msgid "Video File"
+msgstr ""
+
+#: backend/models.py:165
+msgid "Video URL"
+msgstr ""
+
+#: backend/models.py:168
+msgid "Video for"
+msgstr ""
+
+#: backend/models.py:174
+msgid "Publication Date"
+msgstr ""
+
+#: backend/models.py:175
+msgid "Show month?"
+msgstr ""
+
+#: backend/models.py:176
+msgid "Show day?"
+msgstr ""
+
+#: backend/models.py:177
+msgid "Show time?"
+msgstr ""
+
+#: backend/models.py:178
+msgid "URL"
+msgstr ""
+
+#: backend/models.py:179
+msgid "Archive URL"
+msgstr ""
+
+#: backend/models.py:180
+msgid "Screenshot"
+msgstr ""
+
+#: backend/models.py:181
+msgid "Language"
+msgstr ""
+
+#: backend/models.py:241
+msgid "Item"
+msgstr ""
+
+#: backend/models.py:242
+msgid "True?"
+msgstr ""
+
+#: frontend/templates/includes/footer.html:15
+msgid "Impress"
+msgstr "Impressum"
+
+#: frontend/templates/includes/header.html:20
+msgid "Share this"
+msgstr "Teilen"
+
+#: frontend/templates/includes/menu.html:13
+msgid "Home"
+msgstr ""
+
+#: frontend/templates/includes/share-dialog.html:23
+msgid "cancel"
+msgstr "abbrechen"
+
+#: frontend/templates/views/index/_reverse-image-form.html:15
+msgid "Insert image url"
+msgstr "Bild-Link"
+
+#: frontend/templates/views/index/_reverse-image-form.html:19
+msgid "Insert url of an image from the web"
+msgstr "Füge hier einen Internet-Link zu einem Bild ein"
+
+#: frontend/templates/views/index/_search-form.html:14
+#: frontend/templates/views/index/index.html:11
+msgid "Search"
+msgstr "Suche"
+
+#: frontend/templates/views/index/_search-form.html:15
+msgid "Type text"
+msgstr "Suche nach"
+
+#: frontend/templates/views/index/_search-form.html:19
+msgid "Try"
+msgstr "Oder"
+
+#: frontend/templates/views/index/index.html:11
+msgid "Fakes"
+msgstr ""
+
+#: frontend/templates/views/index/index.html:12
+msgid "for"
+msgstr "nach"
+
+#: frontend/templates/views/index/index.html:21
+msgid "or"
+msgstr "oder"
+
+#: frontend/templates/views/index/index.html:33
+msgid "No results. Browse these images instead:"
+msgstr "Leider keine Ergebnisse. Aber schau Dir doch mal diese Bilder an:"
+
+#: frontend/templates/views/index/index.html:35
+msgid "Results for"
+msgstr "Ergebnisse für"
+
+#: frontend/templates/views/item-detail/_claim-list.html:16
+msgid "Fake"
+msgstr ""
+
+#: frontend/templates/views/item-detail/_occurence-modal.html:18
+msgid "close"
+msgstr "zurück"
+
+#: frontend/templates/views/item-detail/item_detail.html:38
+msgid "Factchecks"
+msgstr "Faktenchecks"
+
+#: frontend/templates/views/item-detail/item_detail.html:45
+msgid "Occurences"
+msgstr "Erwähnungen"
+
+#: hoaxfiles/settings.py:186
+msgid "English"
+msgstr "Englisch"
+
+#: hoaxfiles/settings.py:187
+msgid "German"
+msgstr "Deutsch"

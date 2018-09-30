@@ -14,7 +14,7 @@
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-tablet
       mdc-layout-grid__cell--span-6">
         <div class="item-image-wrapper">
-          <img class="item-image mdc-elevation--z2" src="{{ object.cover.url }}" />
+          <img class="item-image mdc-elevation--z2" src="{{ object.original.url }}" />
           <div class="mdc-chip-set category-chip-set">
             <div class="mdc-chip" tabindex="0">
               <a href="{{ object.category.get_absolute_url }}">
@@ -37,14 +37,14 @@
         <h2 class="mdc-typography--headline2">
           {% trans 'Factchecks' %}
         </h2>
-        {% include './_reference-list.html' with references=object.factchecks.all %}
+        {% include './_factcheck-list.html' with factchecks=object.factchecks.all %}
       </div>
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6
       mdc-layout-grid__cell--span-12-tablet">
         <h2 class="mdc-typography--headline2">
           {% trans 'Occurences' %}
         </h2>
-        {% include './_reference-list.html' with references=object.occurences.all %}
+        {% include './_occurence-list.html' with occurences=object.occurences.all %}
       </div>
     </div>
   </div>

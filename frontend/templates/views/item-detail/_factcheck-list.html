@@ -1,0 +1,30 @@
+<div class="references-list-wrapper mdc-elevation--z2">
+  <ul class="mdc-list mdc-list--two-line link-list" aria-orientation="vertical">
+    {% for factcheck in factchecks %}
+    <a href="{{ factcheck.get_absolute_url }}" target="_blank">
+      <li class="mdc-list-item">
+        <span class="mdc-list-item__graphic material-icons material-icons--{{ factcheck.icon }}" aria-hidden="true">{{ factcheck.icon }}</span>
+        <span class="mdc-list-item__text">
+          <span class="mdc-list-item__primary-text">{{ factcheck }}</span>
+          <span class="mdc-list-item__secondary-text">{{ factcheck.source }}</span>
+        </span>
+        <span class="mdc-list-item__meta">
+          <div class="mdc-chip-set">
+            {% if factcheck.lang %}
+            <div class="mdc-chip" tabindex="0">
+              <div class="mdc-chip__text">{{ factcheck.lang }}</div>
+            </div>
+            {% endif %}
+            <div class="mdc-chip long-date" tabindex="0">
+              <div class="mdc-chip__text">{{ factcheck.date }}</div>
+            </div>
+            <div class="mdc-chip short-date" tabindex="0">
+              <div class="mdc-chip__text">{{ factcheck.short_date }}</div>
+            </div>
+          </div>
+        </span>
+      </li>
+    </a>
+    {% endfor %}
+  </ul>
+</div>

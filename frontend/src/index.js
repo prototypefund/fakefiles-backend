@@ -11,6 +11,7 @@ import './components/Button.js'
 import './components/Header.js'
 import './components/Nav.js'
 import './components/ShareDialog.js'
+import './components/OccurenceModal.js'
 
 // views
 import './views/index.js'

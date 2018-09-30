@@ -1,0 +1,29 @@
+<div class="references-list-wrapper mdc-elevation--z2">
+  <ul class="mdc-list mdc-list--two-line link-list" aria-orientation="vertical">
+    {% for occurence in occurences %}
+    <a href="#" data-occurence-open data-occurence-id="{{ occurence.pk }}">
+      <li class="mdc-list-item">
+        <span class="mdc-list-item__graphic material-icons material-icons--{{ occurence.icon }}" aria-hidden="true">{{ occurence.icon }}</span>
+        <span class="mdc-list-item__text">
+          <span class="mdc-list-item__primary-text">{{ occurence }}</span>
+          <span class="mdc-list-item__secondary-text">{{ occurence.source }}</span>
+        </span>
+        <span class="mdc-list-item__meta">
+          <div class="mdc-chip-set">
+            <div class="mdc-chip long-date" tabindex="0">
+              <div class="mdc-chip__text">{{ occurence.date }}</div>
+            </div>
+            <div class="mdc-chip short-date" tabindex="0">
+              <div class="mdc-chip__text">{{ occurence.short_date }}</div>
+            </div>
+          </div>
+        </span>
+      </li>
+    </a>
+    {% endfor %}
+  </ul>
+</div>
+
+{% for occurence in occurences %}
+{% include './_occurence-modal.html' with occurence=occurence %}
+{% endfor %}

@@ -1,0 +1,23 @@
+{% load i18n %}
+
+<aside class="mdc-dialog occurence-modal" id="occurence-modal-{{ occurence.pk }}"
+  role="alertdialog"
+  aria-labelledby="occurence-name"
+  aria-describedby="occurence-description">
+  <div class="mdc-dialog__surface">
+    <header class="mdc-dialog__header">
+      <h2 id="share-dialog-label" class="mdc-dialog__header__title">
+        {{ occurence.name }}
+      </h2>
+    </header>
+    <img src="{{ occurence.screenshot.url }}" class="occurence-modal__image" />
+    <section id="occurence-description" class="mdc-dialog__body">
+      <p>{{ occurence.description|linebreaksbr }}</p>
+    </section>
+    <footer class="mdc-dialog__footer">
+      <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">{% trans 'close' %}</button>
+    </footer>
+  </div>
+  <div class="mdc-dialog__backdrop"></div>
+</aside>
+

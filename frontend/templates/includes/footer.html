@@ -13,6 +13,20 @@
     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
       <p class="mdc-typography--body2">
         <a href="/impressum/">{% trans 'Impress' %}</a>
+      {% get_available_languages as languages %}
+      {% if item %}
+        {% for lang_code, lang_name in languages %}
+            {% language lang_code %}
+            | <a href="{% url 'item-detail' slug=item.slug %}">{{ lang_name }}</a>
+            {% endlanguage %}
+        {% endfor %}
+      {% else %}
+        {% for lang_code, lang_name in languages %}
+            {% language lang_code %}
+            | <a href="{% url 'index' %}">{{ lang_name }}</a>
+            {% endlanguage %}
+        {% endfor %}
+      {% endif %}
       </p>
       <p class="mdc-typography--body2">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod

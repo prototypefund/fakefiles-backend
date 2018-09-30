@@ -2,22 +2,14 @@
 
 {% load i18n %}
 
-{% comment %}
-  {% block header %}
-  {% include './_header.html' %}
-  {% endblock header %}
-
-  {% block content-adjust-css %}mdc-top-app-bar--prominent-fixed-adjust{% endblock %}
-{% endcomment %}
-
 {% block main %}
 <section class="index-view">
   <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
         <h1 class="mdc-typography--headline1">
-          {% trans 'Search' %} {{ count }} {% trans 'Fakes' %}
-          {% if q %}for <span class="q">{{ q|title }}</span>{% endif %}
+          {% trans 'Search' %} {% trans 'Fakes' %}
+          {% if q %}{% trans 'for' %} <span class="q">{{ q|title }}</span>{% endif %}
         </h1>
       </div>
     </div>
