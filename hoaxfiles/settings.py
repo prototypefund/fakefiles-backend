@@ -89,6 +89,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'hoaxfiles.wsgi.application'
 
+LOGIN_URL = '/admin/'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
