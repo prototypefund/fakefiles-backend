@@ -5,7 +5,7 @@ from easy_thumbnails.fields import ThumbnailerImageField
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
-from django.utils import timezone
+from django.utils import timezone, formats
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
@@ -172,16 +172,34 @@ class Reference(AbstractVisibleModel):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='%(class)ss')
     source = models.ForeignKey(Source, on_delete=models.CASCADE, related_name='%(class)ss')
     pub_date = models.DateTimeField(_('Publication Date'))
+    pub_date_show_month = models.BooleanField(_('Show month?'), default=True)
+    pub_date_show_day = models.BooleanField(_('Show day?'), default=True)
+    pub_date_show_time = models.BooleanField(_('Show time?'), default=True)
     url = models.URLField(_('URL'), blank=True, null=True)
     archive_url = models.URLField(_('Archive URL'), blank=True, null=True)
     screenshot = ThumbnailerImageField(_('Screenshot'), upload_to=get_upload_to, blank=True, null=True)
-    lang = models.TextField(_('Language'), choices=settings.LANGUAGES, default=settings.ENGLISH)
+    lang = models.ForeignKey(Tag, on_delete=models.SET_NULL, verbose_name=_('Language'), null=True,
+                             limit_choices_to={'category__translations__name': settings.TAXONOMY['LANGUAGE']})
 
     def get_absolute_url(self):
         return self.url or self.archive_url or self.screenshot.url
 
     class Meta:
         abstract = True
+
+    @cached_property
+    def date(self):
+        if not self.pub_date_show_time:
+            return self.short_date
+        return formats.date_format(self.pub_date)
+
+    @cached_property
+    def short_date(self):
+        if not self.pub_date_show_month:
+            return self.pub_date.year
+        if not self.pub_date_show_day:
+            return formats.date_format(self.pub_date, 'm Y')
+        return formats.date_format(self.pub_date, 'd.m.Y')
 
 
 class FactCheck(Reference):

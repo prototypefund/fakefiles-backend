@@ -57,5 +57,5 @@ class ItemListView(ListView):
         context['helper_text_tags'] = Tag.objects.order_by('?')[:5]
         context['count'] = Item.objects.count()
         context['q'] = self.request.GET.get('q') or self.request.GET.get('tag') or self.request.GET.get('cat')
-        context['share_title'] = 'Fakefiles.org: %s' % context['q']
+        context['share_title'] = 'Fakefiles.org – %s' % (context['q'] or 'Home')
         return context

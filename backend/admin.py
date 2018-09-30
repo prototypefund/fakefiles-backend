@@ -39,11 +39,27 @@ class SourceAdmin(AbstractVisibleModelAdmin):
 class FactCheckInline(TranslatableStackedInline):
     model = FactCheck
     form = ReferenceForm
-    fields = ('name', 'source', 'pub_date', 'url', 'archive_url', 'screenshot', 'lang')
+    fields = ('name',
+              'source',
+              'pub_date',
+              'url',
+              'archive_url',
+              'screenshot',
+              'lang')
 
 
 class OccurenceInline(FactCheckInline):
     model = Occurence
+    fields = ('name',
+              'source',
+              'pub_date',
+              'pub_date_show_month',
+              'pub_date_show_day',
+              'pub_date_show_time',
+              'url',
+              'archive_url',
+              'screenshot',
+              'description')
 
 
 class ClaimInline(TranslatableTabularInline):
