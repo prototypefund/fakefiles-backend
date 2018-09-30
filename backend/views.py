@@ -37,8 +37,8 @@ class ItemListView(ListView):
         if q:
             ids = qs.filter(
                 Q(translations__name__icontains=q) |
-                Q(tags__name__icontains=q) |
-                Q(category__name__icontains=q) |
+                Q(tags__translations__name__icontains=q) |
+                Q(category__translations__name__icontains=q) |
                 Q(translations__description__icontains=q)
             ).values_list('id', flat=True)
             return qs.filter(id__in=ids)
