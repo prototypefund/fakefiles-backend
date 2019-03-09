@@ -11,7 +11,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from parler.models import TranslatedFields
 
-from .elastic import add_image
+# from .elastic import add_image
 from .mixins.models import AbstractVisibleModel, AbstractBaseModel
 
 
@@ -156,8 +156,8 @@ class Image(Media):
             'kind': self.kind
         }
 
-    def sync_elasticsearch(self):
-        add_image(self.image.path, self.serialize())
+    # def sync_elasticsearch(self):
+    #     add_image(self.image.path, self.serialize())
 
 
 class Video(Media):

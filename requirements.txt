@@ -3,9 +3,9 @@ django-parler
 django-reversion
 django-webpack-loader
 easy-thumbnails
-elasticsearch
-image-match
-numpy
+#elasticsearch
+#image-match
+#numpy
 Pillow
-scikit-image
-scipy
+#scikit-image
+#scipy
